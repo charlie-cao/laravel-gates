@@ -37,6 +37,7 @@ class AuthServiceProvider extends ServiceProvider
     {
         //为Gate定义create-post 的检查方法, 当这个被调用的时候
         // 就走后面的闭包,然后这个方法在相应的动作中调用.就可以起到检查当前用户是否有权访问的作用.
+        // 看起来后面的策略使用是在路由中..
         Gate::define('create-post', function ($user) {
             //检查当前用户的角色有没有 create-post的权限.
             return $user->hasAccess('create-post');
