@@ -10,7 +10,23 @@
                 <div class="card-body">
                     <form method="POST" action="{{ route('register') }}">
                         @csrf
+                        <div class="form-group{{ $errors->has('role') ? ' has-error' : '' }} row" >
+                            <label for="role" class="col-md-4 col-form-label text-md-right">User role</label>
 
+                            <div class="col-md-6">
+                                <select id="role" class="form-control" name="role" required>
+                                    @foreach($roles as $id => $role)
+                                        <option value="{{ $id }}">{{ $role }}</option>
+                                    @endforeach
+                                </select>
+
+                                @if ($errors->has('role'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('role') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
                         <div class="form-group row">
                             <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>
 
@@ -24,6 +40,7 @@
                                 @endif
                             </div>
                         </div>
+                        
 
                         <div class="form-group row">
                             <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>

@@ -21,11 +21,9 @@ class CreatePostsTable extends Migration
             $table->boolean('published')->default(false);
             $table->unsignedInteger('user_id');
             $table->timestamps();
-        });
-
-        Schema::table('posts', function($table) {
+        
             $table->foreign('user_id')->references('id')->on('users');
-        });        
+        });
     }
 
     /**
