@@ -56,6 +56,9 @@ class AuthServiceProvider extends ServiceProvider
         Gate::define('delete-post', function ($user, Post $post) {
             return $user->hasAccess('delete-post') or $user->id == $post->user_id;
         });
+        /**
+         * 如果当前用户是编辑,就返回true,否则返回false.
+         */
         Gate::define('see-all-drafts', function ($user) {
             return $user->inRole('editor');
         });
